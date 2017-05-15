@@ -1,3 +1,4 @@
+import java.awt.Color;
 
 public class Brique {
 
@@ -5,6 +6,7 @@ public class Brique {
 	private boolean franchissable;
 	private boolean destructible;
 	private boolean isDestroyed;
+	private Color color;
 	
 	public Brique(int type)
 	{
