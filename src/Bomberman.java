@@ -1,14 +1,21 @@
+import com.sun.glass.events.KeyEvent;
 import edu.princeton.cs.introcs.StdDraw;
+import java.awt.*;
+import java.awt.event.*;
 
 public class Bomberman {
 
 	public static void main(String[] args) {
 		StdDraw.setCanvasSize(800, 650);
 			
-		createPlayerGround(21, 17);
+		Brique[][] plateau = createPlayerGround(21, 17);
+		displayTableau(plateau);
+		
+		Heros hero1 = new Heros();
+		
 	}
 
-	private static void createPlayerGround(int largeur, int longueur) {
+	private static Brique[][] createPlayerGround(int largeur, int longueur) {
 		
 		Brique[][] plateau = new Brique[largeur][longueur];
 		int startGroundX = 4;
@@ -46,11 +53,11 @@ public class Bomberman {
 			}
 		}
 		StdDraw.show(500);
+		return plateau;
 	}
 	
 	private static boolean setPlayerStartGround(int i, int j, int startGroundX, int startGroundY, int length, int length2)
 	{
-		System.out.println("i : " + i + " j : " + j );
 		if((i <= startGroundX && j <= startGroundY && (i!=startGroundX && j!=startGroundY)) || (i >= length-startGroundX-1 && j >= length2-startGroundY-1 && (i!=length-startGroundX-1 && j!=length2-startGroundY-1)))
 		{
 			return true;
@@ -60,4 +67,17 @@ public class Bomberman {
 			return false;
 		}
 	}
+	
+	private static void displayTableau(Brique[][] tableau)
+	{
+		for (int i = 0 ; i<tableau.length ; i++)
+		{
+			for(int j = 0 ; j < tableau[0].length ; j++)
+			{
+				System.out.print(tableau[i][j].getType() + " ");
+			}
+			System.out.println("");
+		}
+	}
+	
 }
