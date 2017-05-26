@@ -12,8 +12,8 @@ public class Heros
 		this.idHeros = idHeros;
 		if(idHeros == 1)
 		{
-			this.positionX = 1;
-			this.positionY = 1;
+			this.positionX = 3;
+			this.positionY = 3;
 			this.isDead = false;
 		}
 		if(idHeros == 2)
@@ -61,5 +61,10 @@ public class Heros
 			StdDraw.filledCircle(12.5+25*(positionX-1), 12.5+25*(positionY-1), 10);
 		}
 	}
-
+	
+	public void dropBomb(Plateau plateau)
+	{
+		Bombe bombe = new Bombe(plateau, this);
+		bombe.drawBomb();
+	}
 }

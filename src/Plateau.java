@@ -5,11 +5,15 @@ import java.awt.event.*;
 public class Plateau {
 	
 	private static Brique [][] contenu;
+	private int longeur;
+	private int hauteur;
 	
 	public Plateau(int largeur, int longueur)
 	{
-
 		this.contenu = new Brique[largeur][longueur];
+		this.longeur = longueur;
+		this.hauteur = largeur;
+		
 		int startGroundX = 4;
 		int startGroundY = 4;
 		Brique brique;
@@ -46,6 +50,27 @@ public class Plateau {
 		}
 	}
 	
+	public int getLongeur() {
+		return longeur;
+	}
+
+	public void setLongeur(int longeur) {
+		this.longeur = longeur;
+	}
+
+	public int getHauteur() {
+		return hauteur;
+	}
+
+	public void setHauteur(int hauteur) {
+		this.hauteur = hauteur;
+	}
+
+	public Brique[][] getContenu()
+	{
+		return this.contenu;
+	}
+	
 	public static boolean setPlayerStartGround(int i, int j, int startGroundX, int startGroundY, int length, int length2)
 	{
 		if((i <= startGroundX && j <= startGroundY && (i!=startGroundX && j!=startGroundY)) || (i >= length-startGroundX-1 && j >= length2-startGroundY-1 && (i!=length-startGroundX-1 && j!=length2-startGroundY-1)))
@@ -67,6 +92,32 @@ public class Plateau {
 				System.out.print(contenu[i][j].getType() + " ");
 			}
 			System.out.println("");
+		}
+		System.out.println("");
+	}
+	
+	public void draw()
+	{
+		for (int i = 0 ; i < this.longeur ; i ++)
+		{
+			for (int j = 0 ; j < this.hauteur ; j++)
+			{
+				Brique briqueParcourue = this.contenu[j][i];
+				
+				if(briqueParcourue.getType()==0)
+				{
+					StdDraw.setPenColor(StdDraw.GRAY);
+				}
+				else if (briqueParcourue.getType()==1)
+				{
+					StdDraw.setPenColor(StdDraw.ORANGE);
+				}
+				else
+				{
+					StdDraw.setPenColor(StdDraw.GREEN);
+				}
+				StdDraw.filledRectangle(25+(i*25), 25+(j*25), 25, 25);
+			}
 		}
 	}
 }
