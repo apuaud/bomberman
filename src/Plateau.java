@@ -44,7 +44,6 @@ public class Plateau {
 				StdDraw.filledRectangle(25+(j*25), 25+(i*25), 25, 25);
 			}
 		}
-		StdDraw.show(500);
 	}
 	
 	public static boolean setPlayerStartGround(int i, int j, int startGroundX, int startGroundY, int length, int length2)

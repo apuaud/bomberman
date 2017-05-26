@@ -39,7 +39,6 @@ public class Brique {
 		this.type = type;
 	}
 	
-	
 	public boolean isFranchissable() {
 		return franchissable;
 	}
@@ -71,6 +70,4 @@ public class Brique {
 		this.setType(2);
 	}
 
-	
 }
-
