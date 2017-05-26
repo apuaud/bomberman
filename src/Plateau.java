@@ -8,23 +8,23 @@ public class Plateau {
 	private int longeur;
 	private int hauteur;
 	
-	public Plateau(int largeur, int longueur)
+	public Plateau(int longueur, int hauteur)
 	{
-		this.contenu = new Brique[largeur][longueur];
 		this.longeur = longueur;
-		this.hauteur = largeur;
+		this.hauteur = hauteur;
+		this.contenu = new Brique[hauteur][longueur];
 		
 		int startGroundX = 4;
 		int startGroundY = 4;
 		Brique brique;
-		StdDraw.setXscale(0,25+16*25);
-		StdDraw.setYscale(0,25+20*25);
-		for(int i=0;i<largeur;i++)
+		StdDraw.setXscale(0,25+20*25);
+		StdDraw.setYscale(0,25+16*25);
+		for(int i=0;i<hauteur;i++)
 		{
 			for(int j=0;j<longueur;j++)
 			{
 
-				if(i==0 || j==0 || i==largeur-1 || j==longueur-1)
+				if(i==0 || j==0 || i==hauteur-1 || j==longueur-1)
 				{
 					brique = new Brique(0);
 					StdDraw.setPenColor(StdDraw.GRAY);
@@ -98,9 +98,9 @@ public class Plateau {
 	
 	public void draw()
 	{
-		for (int i = 0 ; i < this.longeur ; i ++)
+		for (int j = 0 ; j < this.hauteur ; j++)
 		{
-			for (int j = 0 ; j < this.hauteur ; j++)
+			for (int i = 0 ; i < this.longeur ; i ++)
 			{
 				Brique briqueParcourue = this.contenu[j][i];
 				

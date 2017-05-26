@@ -12,14 +12,14 @@ public class Heros
 		this.idHeros = idHeros;
 		if(idHeros == 1)
 		{
-			this.positionX = 3;
-			this.positionY = 3;
+			this.positionX = 1;
+			this.positionY = 1;
 			this.isDead = false;
 		}
 		if(idHeros == 2)
 		{
-			this.positionX = 16;
-			this.positionY = 20;
+			this.positionX = 19;
+			this.positionY = 15;
 			this.isDead = false;
 		}
 	}
@@ -58,7 +58,7 @@ public class Heros
 		if(idHeros == 2)
 		{
 			StdDraw.setPenColor(StdDraw.RED);
-			StdDraw.filledCircle(12.5+25*(positionX-1), 12.5+25*(positionY-1), 10);
+			StdDraw.filledCircle(12.5+25*(positionX), 12.5+25*(positionY), 10);
 		}
 	}
 	

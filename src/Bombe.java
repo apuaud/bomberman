@@ -43,8 +43,12 @@ public class Bombe
 		{
 			if((positionBombX + d) <= plateau.getLongeur()-1)
 			{
-				briqueParcourue = briques[positionBombX + d][positionBombY];
-				if(briqueParcourue.isDestructible())
+				briqueParcourue = briques[positionBombY][positionBombX + d];
+				if(briqueParcourue.getType()==0)
+				{
+					stop=true;
+				}
+				else if(briqueParcourue.isDestructible())
 				{
 					briqueParcourue.setType(2);
 					stop=true;
@@ -58,8 +62,12 @@ public class Bombe
 		{
 			if((positionBombX + g) >= 0)
 			{
-				briqueParcourue = briques[positionBombX + g][positionBombY];
-				if(briqueParcourue.isDestructible())
+				briqueParcourue = briques[positionBombY][positionBombX + g];
+				if(briqueParcourue.getType()==0)
+				{
+					stop=true;
+				}
+				else if(briqueParcourue.isDestructible())
 				{
 					briqueParcourue.setType(2);
 					stop=true;
@@ -73,8 +81,13 @@ public class Bombe
 		{
 			if((positionBombY + h) <= plateau.getHauteur()-1)
 			{
-				briqueParcourue = briques[positionBombX][positionBombY + h];
-				if(briqueParcourue.isDestructible())
+				briqueParcourue = briques[positionBombY + h][positionBombX];
+
+				if(briqueParcourue.getType()==0)
+				{
+					stop=true;
+				}
+				else if(briqueParcourue.isDestructible())
 				{
 					briqueParcourue.setType(2);
 					stop=true;
@@ -88,8 +101,12 @@ public class Bombe
 		{
 			if((positionBombY + h) >=0)
 			{
-				briqueParcourue = briques[positionBombX][positionBombY + h];
-				if(briqueParcourue.isDestructible())
+				briqueParcourue = briques[positionBombY + h][positionBombX];
+				if(briqueParcourue.getType()==0)
+				{
+					stop=true;
+				}
+				else if(briqueParcourue.isDestructible())
 				{
 					briqueParcourue.setType(2);
 					stop=true;
