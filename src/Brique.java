@@ -38,4 +38,39 @@ public class Brique {
 	public void setType(int type) {
 		this.type = type;
 	}
+	
+	
+	public boolean isFranchissable() {
+		return franchissable;
+	}
+
+	public void setFranchissable(boolean franchissable) {
+		this.franchissable = franchissable;
+	}
+
+	public boolean isDestructible() {
+		return destructible;
+	}
+
+	public void setDestructible(boolean destructible) {
+		this.destructible = destructible;
+	}
+
+	public boolean isDestroyed() {
+		return isDestroyed;
+	}
+
+	public void setDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
+	}
+	
+	public void destroy()
+	{
+		this.setDestroyed(true);
+		this.setFranchissable(true);
+		this.setType(2);
+	}
+
+	
 }
+

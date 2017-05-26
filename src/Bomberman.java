@@ -14,5 +14,6 @@ public class Bomberman {
 		Heros hero1 = new Heros();
 		
 	}
-
+	
 }
+

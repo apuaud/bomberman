@@ -3,6 +3,7 @@ public class Heros
 {
 	private int positionX;
 	private int positionY;
+	private boolean isDead;
 	
 	public Heros()
 	{
@@ -33,9 +34,6 @@ public class Heros
 
 	public void setDead(boolean isDead) {
 		this.isDead = isDead;
-	}
-
-	private boolean isDead;
-	
+	}	
 
 }
