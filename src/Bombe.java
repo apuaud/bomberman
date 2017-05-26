@@ -12,6 +12,7 @@ public class Bombe
 	{
 		this.positionX = hero.getPositionX();
 		this.positionY = hero.getPositionY();
+		drawBomb();
 		this.timer = new Timer();
 		
 		Timer timer = new Timer();
@@ -32,6 +33,9 @@ public class Bombe
 	public TimerTask bombExplose(Plateau plateau)
 	{
 		System.out.println("Bomb explosed");
+
+		
+		
 		Brique[][] briques = plateau.getContenu();
 		Brique briqueParcourue;
 		boolean stop = false;
@@ -46,6 +50,7 @@ public class Bombe
 				briqueParcourue = briques[positionBombY][positionBombX + d];
 				if(briqueParcourue.getType()==0)
 				{
+					checkIfPlayerHere(positionBombY,positionBombX + d);
 					stop=true;
 				}
 				else if(briqueParcourue.isDestructible())
@@ -65,6 +70,7 @@ public class Bombe
 				briqueParcourue = briques[positionBombY][positionBombX + g];
 				if(briqueParcourue.getType()==0)
 				{
+					checkIfPlayerHere(positionBombY,positionBombX + g);
 					stop=true;
 				}
 				else if(briqueParcourue.isDestructible())
@@ -81,6 +87,7 @@ public class Bombe
 		{
 			if((positionBombY + h) <= plateau.getHauteur()-1)
 			{
+				checkIfPlayerHere(positionBombY + h, positionBombX);
 				briqueParcourue = briques[positionBombY + h][positionBombX];
 
 				if(briqueParcourue.getType()==0)
@@ -97,13 +104,14 @@ public class Bombe
 		stop=false;
 		
 		// Detruire en bas
-		for(int h = -1 ; h >= -3 && !stop; h--)
+		for(int b = -1 ; b >= -3 && !stop; b--)
 		{
-			if((positionBombY + h) >=0)
+			if((positionBombY + b) >=0)
 			{
-				briqueParcourue = briques[positionBombY + h][positionBombX];
+				briqueParcourue = briques[positionBombY + b][positionBombX];
 				if(briqueParcourue.getType()==0)
 				{
+					checkIfPlayerHere(positionBombY + b, positionBombX);
 					stop=true;
 				}
 				else if(briqueParcourue.isDestructible())
@@ -114,5 +122,24 @@ public class Bombe
 			}
 		}
 		return null;
+	}
+	
+	public void checkIfPlayerHere(int positionYExplosion, int positionXExplosion)
+	{
+		Heros hero1 = Bomberman.hero1;
+		Heros hero2 = Bomberman.hero2;
+		int hero1PositionX = Bomberman.hero1.getPositionX();
+		int hero1PositionY = Bomberman.hero1.getPositionY();
+		int hero2PositionX = Bomberman.hero2.getPositionX();
+		int hero2PositionY = Bomberman.hero2.getPositionY();
+		
+		if(hero1PositionX == positionXExplosion  && hero1PositionY == positionYExplosion)
+		{
+			hero1.setIsDead(true);
+		}
+		else if (hero2PositionX == positionXExplosion  && hero2PositionY == positionYExplosion)
+		{
+			hero2.setIsDead(true);
+		}
 	}
 }

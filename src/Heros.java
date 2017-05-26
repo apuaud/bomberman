@@ -40,11 +40,11 @@ public class Heros
 		this.positionY = positionY;
 	}
 
-	public boolean isDead() {
+	public boolean getIsDead() {
 		return isDead;
 	}
 
-	public void setDead(boolean isDead) {
+	public void setIsDead(boolean isDead) {
 		this.isDead = isDead;
 	}
 

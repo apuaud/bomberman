@@ -4,9 +4,9 @@ import java.awt.event.*;
 
 public class Bomberman {
 	
-	static Plateau plateau;
-	static Heros hero1;
-	static Heros hero2;
+	public static Plateau plateau;
+	public static Heros hero1;
+	public static Heros hero2;
 	
 	public static void main(String[] args) {
 		StdDraw.setCanvasSize(800, 650);
@@ -15,13 +15,14 @@ public class Bomberman {
 		hero1 = new Heros(1);
 		hero2 = new Heros(2);
 		
-		while(true)
+		while(true && hero1.getIsDead() == false && hero2.getIsDead() == false)
 		{
 			StdDraw.enableDoubleBuffering();
 			plateau.displayTableau();
 			plateau.draw();
 
-			
+			hero1.drawHeros();
+			hero2.drawHeros();
 			if(StdDraw.isKeyPressed(KeyEvent.VK_D))
 			{
 				if(checkFranchissable(hero1.getPositionX()+1, hero1.getPositionY()))
@@ -89,12 +90,17 @@ public class Bomberman {
 				hero2.dropBomb(plateau);
 			}
 			
-			
-			hero1.drawHeros();
-			hero2.drawHeros();
-
 			StdDraw.show();
 			StdDraw.pause(20);
+		}
+		
+		if (hero1.getIsDead()==true)
+		{
+			System.out.println("Le Hero 1 est mort");
+		}
+		else
+		{
+			System.out.println("Le Hero 2 est mort");
 		}
 	}
 	
