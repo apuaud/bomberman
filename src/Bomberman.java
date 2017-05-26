@@ -1,4 +1,3 @@
-import com.sun.glass.events.KeyEvent;
 import edu.princeton.cs.introcs.StdDraw;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,8 +8,9 @@ public class Bomberman {
 		StdDraw.setCanvasSize(800, 650);
 			
 		Brique[][] plateau = createPlayerGround(21, 17);
-		displayTableau(plateau);
 		
+		displayTableau(plateau);
+
 		Heros hero1 = new Heros();
 		
 	}
@@ -70,14 +70,13 @@ public class Bomberman {
 	
 	private static void displayTableau(Brique[][] tableau)
 	{
-		for (int i = 0 ; i<tableau.length ; i++)
+		for (int j = tableau[0].length-1 ; j >=0  ; j--)
 		{
-			for(int j = 0 ; j < tableau[0].length ; j++)
+			for(int i = 0 ; i<tableau.length ; i++)
 			{
 				System.out.print(tableau[i][j].getType() + " ");
 			}
 			System.out.println("");
 		}
 	}
-	
 }
