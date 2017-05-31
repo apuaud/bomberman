@@ -36,7 +36,7 @@ public class Joueur
 
 	public Joueur (Terrain terrain, Color color)
 	{	this.life=1;
-		this.speed=1;
+		this.speed=2;
 		this.nb_bomb=2;
 		this.timer=0;
 		this.inv=0;
@@ -327,7 +327,6 @@ public class Joueur
 	public void draw2 (Terrain terrain)
 	{	
 		StdDraw.setPenColor(this.color);
-
 		StdDraw.filledRectangle (this.x,this.y,terrain.getwidth()/2, terrain.getheigth()/2);
 	}
 	
@@ -335,126 +334,20 @@ public class Joueur
 	{	
 		if (this.sens==1)
 		{	
-			int lar=(5/4)*this.hitx;
-			int lon=(5/4)*this.hity;
-			
-			int slar=lar/3;
-			int slon=lon/3;
-			
-			int sslar=lar/4;
-			int sslon=lon/4;
-			
-			double [] xxx={this.x-(lar/2),this.x,this.x+(lar/2)};
-			double [] yyy={this.y+slon,this.y-slon,this.y+slon};
-			
-			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.filledEllipse (this.x-lar,this.y-sslon,sslar,sslon);
-			StdDraw.filledEllipse (this.x+lar,this.y-sslon,sslar,sslon);
-			StdDraw.filledEllipse (this.x-slar,this.y-lon,sslar,sslon);
-			StdDraw.filledEllipse (this.x+slar,this.y-lon,sslar,sslon);
-			
-			StdDraw.setPenColor(this.color);
-			StdDraw.filledEllipse (this.x,this.y,lar,lon);
-			
-			StdDraw.setPenColor(StdDraw.WHITE);
-			StdDraw.filledEllipse (this.x-(lar/2),this.y,slar,slon);
-			StdDraw.filledEllipse (this.x+(lar/2),this.y,slar,slon);
-			
-			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.filledEllipse (this.x-(lar/2),this.y,sslar/2,sslon/2);
-			StdDraw.filledEllipse (this.x+(lar/2),this.y,sslar/2,sslon/2);
-			
-			StdDraw.setPenColor(this.color);
-			StdDraw.filledPolygon (xxx,yyy);
+			StdDraw.picture(this.x, this.y, "bomberman1.png", 40, 40);
 		}
 		else if (this.sens==2)
 		{	
-			int lar=(5/4)*this.hitx;
-			int lon=(5/4)*this.hity;
-			
-			int slar=lar/3;
-			int slon=lon/3;
-			
-			int sslar=lar/4;
-			int sslon=lon/4;
-			
-			double [] xxx={this.x+(lar/2),this.x+(lar/2)+slar,this.x+(lar/2)+slar};
-			double [] yyy={this.y+slon,this.y,this.y+slon};
-			
-			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.filledEllipse (this.x,this.y-lon,sslar,sslon);
-			
-			StdDraw.setPenColor(this.color);
-			StdDraw.filledEllipse (this.x,this.y,lar,lon);
-			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.filledEllipse (this.x,this.y-sslon,sslar,sslon);
-			
-			StdDraw.setPenColor(StdDraw.WHITE);
-			StdDraw.filledEllipse (this.x+(lar/2),this.y,slar,slon);
-			
-			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.filledEllipse (this.x+(lar/2),this.y,sslar/2,sslon/2);
-			
-			StdDraw.setPenColor(this.color);
-			StdDraw.filledRectangle (this.x, this.y,sslar,sslon);
-			StdDraw.filledPolygon (xxx,yyy);
+			StdDraw.picture(this.x, this.y, "bomberman3.png", 40, 40);
 		}
 		else if (this.sens==3)
 		{	
-			int lar=(5/4)*this.hitx;
-			int lon=(5/4)*this.hity;
-			
-			int slar=lar/3;
-			int slon=lon/3;
-			
-			int sslar=lar/4;
-			int sslon=lon/4;
-			
-			double [] xxx={this.x-(lar/2),this.x-(lar/2)-slar,this.x-(lar/2)-slar};
-			double [] yyy={this.y+slon,this.y,this.y+slon};
-			
-			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.filledEllipse (this.x,this.y-lon,sslar,sslon);
-			
-			StdDraw.setPenColor(this.color);
-			StdDraw.filledEllipse (this.x,this.y,lar,lon);
-			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.filledEllipse (this.x,this.y-sslon,sslar,sslon);
-			
-			StdDraw.setPenColor(StdDraw.WHITE);
-			StdDraw.filledEllipse (this.x-(lar/2),this.y,slar,slon);
-			
-			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.filledEllipse (this.x-(lar/2),this.y,sslar/2,sslon/2);
-			
-			StdDraw.setPenColor(this.color);
-			StdDraw.filledRectangle (this.x, this.y,sslar,sslon);
-			StdDraw.filledPolygon (xxx,yyy);
+			StdDraw.picture(this.x, this.y, "bomberman4.png", 40, 40);
 		}
 		else if (this.sens==4)
 		{	
-			int lar=(5/4)*this.hitx;
-			int lon=(5/4)*this.hity;
-			
-			int slar=lar/3;
-			int slon=lon/3;
-			
-			int sslar=lar/4;
-			int sslon=lon/4;
-			
-			double [] xxx={this.x-(lar/2),this.x,this.x+(lar/2)};
-			double [] yyy={this.y+slon,this.y-slon,this.y+slon};
-			
-			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.filledEllipse (this.x-lar,this.y-sslon,sslar,sslon);
-			StdDraw.filledEllipse (this.x+lar,this.y-sslon,sslar,sslon);
-			StdDraw.filledEllipse (this.x-slar,this.y-lon,sslar,sslon);
-			StdDraw.filledEllipse (this.x+slar,this.y-lon,sslar,sslon);
-			
-			StdDraw.setPenColor(this.color);
-			StdDraw.filledEllipse (this.x,this.y,lar,lon);
+			StdDraw.picture(this.x, this.y, "bomberman2.png", 40, 40);
 		}
 	}
-
 	
 }

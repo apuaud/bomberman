@@ -53,11 +53,33 @@ public class main
 		
 			terrain.draw_all (joueur, nb_joueur);
 			
+			for (i=0;i<2;i++)
+			{	int compte = 0;
+				for (j=0;j<joueur[i].getnbbomb();j++)
+				{
+					if (joueur[i].getbomb(j).getactivate()==0)
+					{
+						compte=compte+1;
+					}
+				}
+				if(i == 0)
+				{
+					StdDraw.textRight(18*25, 25, "Joueur " + (i+1) + " : " + 
+					joueur[i].getlife() + " vie(s) restante(s), " + compte + " bombe(s) restante(s)");
+				}
+				else if (i == 1)
+				{
+					StdDraw.textRight(42*25, 25, "Joueur " + (i+1) + " : " + 
+					joueur[i].getlife() + " vie(s) restante(s), " + compte + " bombes restante(s)");
+				}
+			}
+			
 			clear();
 			debug(joueur, nb_joueur);
 			
 			StdDraw.show();
 			sleep (5);
+			
 		}
 		
 		displayGameOver(joueur, terrain);
@@ -158,11 +180,11 @@ public class main
 		String joueurGagnant;
 		if(joueur[0].getlife()<=0)
 		{
-			joueurGagnant = "Joueur2" ;
+			joueurGagnant = "Joueur 2" ;
 		}
 		else
 		{
-			joueurGagnant="Joueur1";
+			joueurGagnant="Joueur 1";
 
 		}
 		

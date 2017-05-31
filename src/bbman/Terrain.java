@@ -114,29 +114,26 @@ public class Terrain
 		{	for (j=0;j<this.y;j++)
 			{	if (this.tab[i][j]==0)
 				{	StdDraw.setPenColor(Color.GREEN);
-					StdDraw.filledRectangle ((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,this.width,this.heigth);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
 				}
 				if (this.tab[i][j]==2)
 				{	StdDraw.setPenColor(Color.ORANGE);
-					StdDraw.filledRectangle ((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,this.width,this.heigth);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"orange.png",40,40);
 				}
 				else if (this.tab[i][j]==1)
 				{	StdDraw.setPenColor(Color.GRAY);
-					StdDraw.filledRectangle ((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,this.width,this.heigth);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"bloc.png",40,40);
 				}
 				else if (this.tab[i][j]>=666)
 				{	StdDraw.setPenColor(Color.GREEN);
-					StdDraw.filledRectangle ((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,this.width,this.heigth);
-					StdDraw.setPenColor(StdDraw.YELLOW);
-					StdDraw.filledCircle ((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,rayon);
-					StdDraw.setPenColor(StdDraw.ORANGE);
-					StdDraw.filledCircle ((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,rayon/2);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.width)+orgx, (j*2*this.heigth)+orgy, "feu.png", 40, 40);
 				}
 				else if (this.tab[i][j]==10)
 				{	StdDraw.setPenColor(Color.GREEN);
-					StdDraw.filledRectangle ((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,this.width,this.heigth);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
 					StdDraw.setPenColor(Color.CYAN);
-					StdDraw.filledCircle ((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,rayon/2);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"bonbonbleu.png",40,40);
 				}
 				StdDraw.text(0, 0, "Vies : " + joueur[0].getlife());
 			}
@@ -148,8 +145,10 @@ public class Terrain
 				joueur[i].bombe[j].draw(this);
 		}
 		for (i=0;i<nb;i++)
+		{
 			joueur[i].draw();
+		}
+		
 	}
-
 	
 }

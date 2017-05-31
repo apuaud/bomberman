@@ -63,10 +63,9 @@ public class Bombe
 				larg=terrain.getheigth();
 			
 			StdDraw.setPenColor(Color.GREEN);
-			StdDraw.filledRectangle(x, y, terrain.getwidth(),terrain.getheigth());
+			StdDraw.picture(x,y,"vert.png",40,40);
 			
-			StdDraw.setPenColor(Color.BLACK);
-			StdDraw.filledCircle(x, y, larg);
+			StdDraw.picture(x, y, "bombe.png", 40, 40);
 		}
 	}
 	
@@ -84,7 +83,7 @@ public class Bombe
 			this.x=x; 
 			this.y=y;
 			
-			this.timer=java.lang.System.currentTimeMillis() ;
+			this.timer=java.lang.System.currentTimeMillis();
 			
 			terrain.set(x,y,665);
 		}
@@ -136,10 +135,10 @@ public class Bombe
 			
 			else if (terrain.gettab(this.x+i,this.y)==666)
 				terrain.set(this.x+i,this.y,0);
-			
+
 			else
 				test=1;
-		
+
 			i=i+1;
 		}
 		i=0;
@@ -212,7 +211,7 @@ public class Bombe
 			else
 				terrain.set(this.x+i,this.y,666);
 			
-			if (i==this.puissance)
+			if (i==this.puissance+1)
 				test=1;
 		
 			if (test==0)
@@ -232,7 +231,7 @@ public class Bombe
 			else 
 				terrain.set(this.x,this.y-i,666);
 		
-			if (i==this.puissance)
+			if (i==this.puissance+1)
 				test=1;
 		
 			if (test==0)
@@ -252,7 +251,7 @@ public class Bombe
 			else
 				terrain.set(this.x-i,this.y,666);
 			
-			if (i==this.puissance)
+			if (i==this.puissance+1)
 				test=1;
 		
 			if (test==0)
@@ -272,7 +271,7 @@ public class Bombe
 			else
 				terrain.set(this.x,this.y+i,666);
 			
-			if (i==this.puissance)
+			if (i==this.puissance+1)
 				test=1;
 		
 			if (test==0)
