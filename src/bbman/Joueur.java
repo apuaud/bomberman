@@ -74,6 +74,16 @@ public class Joueur
 		return this.nb_bomb;
 	}
 	
+	public void setLife(int nbLife)
+	{
+		this.life = nbLife;
+	}
+	
+	public int getLife()
+	{
+		return this.life;
+	}
+	
 	public int getlife ()
 	{	
 		return this.life;
@@ -82,9 +92,25 @@ public class Joueur
 	{	
 		return this.nb_bomb;
 	}
+	
+	public void setnbbomb(int nbbomb)
+	{
+		this.nb_bomb=nbbomb;
+	}
+	
 	public Bombe getbomb (int num)
 	{	
 		return this.bombe[num];
+	}
+	
+	public void setSpeed(int speed)
+	{
+		this.speed = speed;
+	}
+	
+	public int getSpeed()
+	{
+		return this.speed;
 	}
 	
 	public void init (int who, int x, int y, int width, int heigth)
@@ -138,6 +164,26 @@ public class Joueur
 					bombe[i].setPuissance(bombe[i].getPuissance()-1);	
 				}
 			}
+		}
+		else if(val==14)
+		{
+			this.setLife(this.getLife()+1);
+		}
+		else if(val == 15)
+		{
+			this.setSpeed(this.getSpeed()+1);
+		}
+		else if(val == 16)
+		{
+			this.setSpeed(this.getSpeed()-1);
+		}
+		else if(val == 17 && this.getnbbomb()<=5)
+		{
+			this.setnbbomb(this.getnbbomb()+2);
+		}
+		else if(val==18 && this.getnbbomb()>2)
+		{
+			this.setnbbomb(this.getnbbomb()-2);
 		}
 	
 		if(val==11)
