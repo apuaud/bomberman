@@ -114,13 +114,23 @@ public class Bombe
 		while (java.lang.System.currentTimeMillis()-time<mili);
 	}
 	
+	public int getPuissance()
+	{
+		return this.puissance;
+	}
+	
+	public void setPuissance(int puissance)
+	{
+		this.puissance=puissance;
+	}
+	
 	public int test_bonus ()
 	{	
 		int test=(int)(Math.random()*100);
 		int value=0;
 		if (test<20)
 		{
-			int newTest=(int)(Math.random()*8);
+			int newTest=(int)(Math.random()*9);
 			switch(newTest)
 			{
 				case 0:
@@ -153,6 +163,10 @@ public class Bombe
 				
 				case 7:
 					value = 17;
+					break;
+				
+				case 8:
+					value = 18;
 					break;
 			}
 		}

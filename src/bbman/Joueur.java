@@ -54,7 +54,6 @@ public class Joueur
 		{	bombe [i]=new Bombe();
 		}
 		
-		this.bb_pc=3;
 		this.bb_bef=5000;
 		this.bb_exp=1000;
 	}
@@ -116,7 +115,7 @@ public class Joueur
 			}
 			else
 			{	if (this.bombe[i].getactivate()==0)
-				{	terrain=this.bombe[i].put_bombe(this.bb_bef, this.bb_exp, this.bb_pc, sx, sy, terrain);
+				{	terrain=this.bombe[i].put_bombe(this.bb_bef, this.bb_exp, bombe[i].getPuissance(), sx, sy, terrain);
 					//terrain.set(sx,sy,665);
 					test=1;
 				}
