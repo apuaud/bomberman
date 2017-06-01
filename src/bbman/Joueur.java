@@ -54,7 +54,7 @@ public class Joueur
 		{	bombe [i]=new Bombe();
 		}
 		
-		this.bb_pc=2;
+		this.bb_pc=3;
 		this.bb_bef=5000;
 		this.bb_exp=1000;
 	}

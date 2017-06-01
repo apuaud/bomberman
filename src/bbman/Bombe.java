@@ -40,7 +40,7 @@ public class Bombe
 		this.time_bef=5000;
 		this.time_exp=1000;
 		
-		this.puissance=2;
+		this.puissance=3;
 	}
 		
 	
@@ -211,7 +211,7 @@ public class Bombe
 			else
 				terrain.set(this.x+i,this.y,666);
 			
-			if (i==this.puissance+1)
+			if (i==this.puissance)
 				test=1;
 		
 			if (test==0)
@@ -231,7 +231,7 @@ public class Bombe
 			else 
 				terrain.set(this.x,this.y-i,666);
 		
-			if (i==this.puissance+1)
+			if (i==this.puissance)
 				test=1;
 		
 			if (test==0)
@@ -251,7 +251,7 @@ public class Bombe
 			else
 				terrain.set(this.x-i,this.y,666);
 			
-			if (i==this.puissance+1)
+			if (i==this.puissance)
 				test=1;
 		
 			if (test==0)
@@ -271,7 +271,7 @@ public class Bombe
 			else
 				terrain.set(this.x,this.y+i,666);
 			
-			if (i==this.puissance+1)
+			if (i==this.puissance)
 				test=1;
 		
 			if (test==0)
