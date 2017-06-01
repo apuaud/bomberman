@@ -113,37 +113,99 @@ public class Terrain
 		for (i=0;i<this.x;i++)
 		{	for (j=0;j<this.y;j++)
 			{	if (this.tab[i][j]==0)
-				{	StdDraw.setPenColor(Color.GREEN);
+				{	
+					StdDraw.setPenColor(Color.GREEN);
 					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
 				}
 				if (this.tab[i][j]==2)
-				{	StdDraw.setPenColor(Color.ORANGE);
+				{	
+					StdDraw.setPenColor(Color.ORANGE);
 					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"orange.png",40,40);
 				}
 				else if (this.tab[i][j]==1)
-				{	StdDraw.setPenColor(Color.GRAY);
+				{	
+					StdDraw.setPenColor(Color.GRAY);
 					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"bloc.png",40,40);
 				}
 				else if (this.tab[i][j]>=666)
-				{	StdDraw.setPenColor(Color.GREEN);
+				{	
+					StdDraw.setPenColor(Color.GREEN);
 					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
 					StdDraw.picture((i*2*this.width)+orgx, (j*2*this.heigth)+orgy, "feu.png", 40, 40);
 				}
 				else if (this.tab[i][j]==10)
-				{	StdDraw.setPenColor(Color.GREEN);
+				{
+					StdDraw.setPenColor(Color.GREEN);
 					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
 					StdDraw.setPenColor(Color.CYAN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"bonbonbleu.png",40,40);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"flammebleue.png",40,40);
+				}
+				else if (this.tab[i][j]==11)
+				{
+					StdDraw.setPenColor(Color.GREEN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
+					StdDraw.setPenColor(Color.CYAN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"flammejaune.png",40,40);
+				}
+				else if (this.tab[i][j]==12)
+				{	
+					StdDraw.setPenColor(Color.GREEN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
+					StdDraw.setPenColor(Color.CYAN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"flammerouge.png",40,40);
+				}
+				else if (this.tab[i][j]==13)
+				{	
+					StdDraw.setPenColor(Color.GREEN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
+					StdDraw.setPenColor(Color.CYAN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"bomberouge.png",40,40);
+				}
+				else if (this.tab[i][j]==14)
+				{	
+					StdDraw.setPenColor(Color.GREEN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
+					StdDraw.setPenColor(Color.CYAN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"oneup.png",40,40);
+				}
+				else if (this.tab[i][j]==15)
+				{	
+					StdDraw.setPenColor(Color.GREEN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
+					StdDraw.setPenColor(Color.CYAN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"slow.png",40,40);
+				}
+				else if (this.tab[i][j]==16)
+				{	
+					StdDraw.setPenColor(Color.GREEN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
+					StdDraw.setPenColor(Color.CYAN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"speed.png",40,40);
+				}
+				else if (this.tab[i][j]==17)
+				{	
+					StdDraw.setPenColor(Color.GREEN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
+					StdDraw.setPenColor(Color.CYAN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"bombeplus.png",40,40);
+				}
+				else if (this.tab[i][j]==18)
+				{	
+					StdDraw.setPenColor(Color.GREEN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
+					StdDraw.setPenColor(Color.CYAN);
+					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"bombemoins.png",40,40);
 				}
 				StdDraw.text(0, 0, "Vies : " + joueur[0].getlife());
 			}
 		}
-		
+
 		for (i=0;i<nb;i++)
 		{
 			for (j=0; j<joueur[i].getnbbombe ();j++)
 				joueur[i].bombe[j].draw(this);
 		}
+
 		for (i=0;i<nb;i++)
 		{
 			joueur[i].draw();
