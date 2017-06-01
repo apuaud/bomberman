@@ -131,11 +131,34 @@ public class Joueur
 	{
 		if (val==10)
 		{
-			this.nb_bomb=this.nb_bomb+1;
-			if (this.nb_bomb>9)
-				this.nb_bomb=9;
+			for (int i=0; i<10; i++)
+			{
+				if(bombe[i].getPuissance() >=1)
+				{
+					bombe[i].setPuissance(bombe[i].getPuissance()-1);	
+				}
+			}
 		}
 	
+		if(val==11)
+		{
+			for (int i=0; i<10; i++)
+			{
+				if(bombe[i].getPuissance() <= 10)
+				{
+					bombe[i].setPuissance(bombe[i].getPuissance()+1);	
+				}
+			}
+		}
+		
+		if(val==12)
+		{
+			for (int i=0; i<10; i++)
+			{
+				bombe[i].setPuissance(10);	
+			}
+		}
+		
 	}
 	
 	public void setdeg()
