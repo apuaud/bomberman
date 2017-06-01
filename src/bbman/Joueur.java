@@ -169,11 +169,11 @@ public class Joueur
 		{
 			this.setLife(this.getLife()+1);
 		}
-		else if(val == 15)
+		else if(val == 16)
 		{
 			this.setSpeed(this.getSpeed()+1);
 		}
-		else if(val == 16)
+		else if(val == 15)
 		{
 			this.setSpeed(this.getSpeed()-1);
 		}
