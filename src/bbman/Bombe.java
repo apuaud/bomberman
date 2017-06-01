@@ -115,39 +115,48 @@ public class Bombe
 	}
 	
 	public int test_bonus ()
-	{	int test=(int)(Math.random()*100);
-	
+	{	
+		int test=(int)(Math.random()*100);
+		int value=0;
 		if (test<20)
 		{
 			int newTest=(int)(Math.random()*8);
 			switch(newTest)
 			{
 				case 0:
-					return 10;
+					value = 10;
+					break;
 					
 				case 1:
-					return 11;
+					value = 11;
+					break;
 					
 				case 2:
-					return 12;
+					value = 12;
+					break;
 				
 				case 3 :
-					return 13;
+					value = 13;
+					break;
 					
 				case 4:
-					return 14;
+					value = 14;
+					break;
 				
 				case 5:
-					return 15;
+					value = 15;
+					break;
 				
 				case 6:
-					return 16;
+					value = 16;
+					break;
 				
 				case 7:
-					return 17;
+					value = 17;
+					break;
 			}
 		}
-		return 0;
+		return value;
 	}
 	
 	public Terrain end_boum (Terrain terrain)
