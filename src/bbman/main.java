@@ -86,7 +86,7 @@ public class main
 	}
 	public static void clear ()
 	{	
-		System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		//System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	}
 	
 	public static void sleep (int mili)
@@ -110,7 +110,7 @@ public class main
 					compte=compte+1;
 			}
 			nbj=i+1;
-			System.out.print("	JOUEUR "+nbj+":\nLIFE :"+joueur[i].getlife()+"\nBOMB: "+compte+"\n\n\n");
+			//System.out.print("	JOUEUR "+nbj+":\nLIFE :"+joueur[i].getlife()+"\nBOMB: "+compte+"\n\n\n");
 		}
 	}
 
@@ -162,7 +162,6 @@ public class main
 		return ret;
 	}
 
-	
 	public static boolean noPlayerIsDead(Joueur[] joueur)
 	{
 		for (int i = 0 ; i < joueur.length ; i++)

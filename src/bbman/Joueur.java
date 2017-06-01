@@ -35,7 +35,7 @@ public class Joueur
 	
 
 	public Joueur (Terrain terrain, Color color)
-	{	this.life=1;
+	{	this.life=3;
 		this.speed=2;
 		this.nb_bomb=2;
 		this.timer=0;

@@ -117,9 +117,36 @@ public class Bombe
 	public int test_bonus ()
 	{	int test=(int)(Math.random()*100);
 	
-		if (test<50)
-			return 10;
-		
+		if (test<20)
+		{
+			int newTest=(int)(Math.random()*8);
+			switch(newTest)
+			{
+				case 0:
+					return 10;
+					
+				case 1:
+					return 11;
+					
+				case 2:
+					return 12;
+				
+				case 3 :
+					return 13;
+					
+				case 4:
+					return 14;
+				
+				case 5:
+					return 15;
+				
+				case 6:
+					return 16;
+				
+				case 7:
+					return 17;
+			}
+		}
 		return 0;
 	}
 	
@@ -197,7 +224,7 @@ public class Bombe
 	{	int test=0;
 		int i=1;
 
-		Audio sound = new Audio("boum");
+		Audio sound = new Audio("boum2");
 		
 		terrain.set(this.x, this.y, 666);
 		
