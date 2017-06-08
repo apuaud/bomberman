@@ -18,9 +18,9 @@ public class Joueur
 	private int approxPositionY; // Comme les déplacements sont fluides et non case par case, il faut déterminer une valeur d'approximation en Y pour savoir sur quelle case est le joueur (s'il n'est pas parfaitement au centre d'une case)
 	private long chrono; // Chrono utilisé pour calculer la durée d'invincibilité
 	private boolean passeMuraille; // Le joueur a-t-il le bonus passe muraille activé ?
-	private int bouclier;
-	private boolean bomberouge;
-	private boolean flammeverte;
+	private int bouclier; // Le joueur a-t-il le bonus bouclier activé ?
+	private boolean bomberouge; // Le joueur a-t-il le bonus bombe rouge activé ?
+	private boolean flammeverte; // Le joueur a-t-il le bonus flamme verte activé ?
 	
 	Bombe [] bombe=new Bombe [10];
 
