@@ -1,214 +1,215 @@
 package bbman;
 
-import java.awt.event.KeyEvent;
 import edu.princeton.cs.introcs.StdDraw;
-import java.awt.Color;
-import javax.sound.sampled.*;
-import java.applet.Applet;
-import java.applet.AudioClip;
 
 public class Terrain 
-{	private int [][] tab;
+{	
+	private int nbLignes; // Nombre de lignes
+	private int nbColonnes; // Nombre de colonnes
+	private int longueur; // Longueur d'une case
+	private int hauteur; // Hauteur d'une case
+	private int [][] plateau; // Terrain de jeu
 	
-	private int x;
-	private int y;
+	// Initialisation du terrain
 	
-	private int width;
-	private int heigth;
-	
-
-	public Terrain (int x, int y, int width, int heigth)
+	public Terrain (int nbLignes, int nbColonnes, int longueur, int hauteur)
 	{	
-		this.tab=new int [x][y];
-		this.x=x;
-		this.y=y;
+		this.plateau=new int[nbLignes][nbColonnes];
+		this.nbLignes=nbLignes;
+		this.nbColonnes=nbColonnes;
 		
-		this.width=width;
-		this.heigth=heigth;
-	
-		int i=0;
-		int j=0;
+		this.longueur=longueur;
+		this.hauteur=hauteur;
 		
-		for (i=0;i<x;i++)
+		// On initialise les cases grises et oranges
+		
+		for (int i=0;i<nbLignes;i++)
 		{	
-			for (j=0;j<y;j++)
+			for (int j=0;j<nbColonnes;j++)
 			{	
-				if ((i==0)||(j==0)||(i==x-1)||(j==y-1)||((i%2==0)&&(j%2==0)))
-					this.tab [i][j]=1;
+				if ((i==0)||(j==0)||(i==nbLignes-1)||(j==nbColonnes-1)||((i%2==0)&&(j%2==0)))
+				{
+					this.plateau[i][j]=1;
+				}
 				else
-					this.tab [i][j]=2;
+				{
+					this.plateau[i][j]=2;
+				}
 			}
 		}
 		
-		this.tab [1][1]=0;
-		this.tab [2][1]=0;
-		this.tab [3][1]=0;
-		this.tab [3][2]=0;
-		this.tab [1][2]=0;
-		this.tab [1][3]=0;
-		this.tab [2][3]=0;
+		// On initialise les cases vertes en haut à droite et en bas à gauche du terrain
 		
-		this.tab [x-2][y-2]=0;
-		this.tab [x-3][y-2]=0;
-		this.tab [x-4][y-2]=0;
-		this.tab [x-4][y-3]=0;
-		this.tab [x-2][y-3]=0;
-		this.tab [x-2][y-4]=0;
-		this.tab [x-3][y-4]=0;
+		this.plateau[1][1]=0;
+		this.plateau[1][2]=0;
+		this.plateau[1][3]=0;
+		this.plateau[2][1]=0;
+		this.plateau[2][3]=0;
+		this.plateau[3][1]=0;
+		this.plateau[3][2]=0;
+		
+		this.plateau[nbLignes-2][nbColonnes-2]=0;
+		this.plateau[nbLignes-2][nbColonnes-3]=0;
+		this.plateau[nbLignes-2][nbColonnes-4]=0;
+		this.plateau[nbLignes-3][nbColonnes-2]=0;
+		this.plateau[nbLignes-3][nbColonnes-4]=0;
+		this.plateau[nbLignes-4][nbColonnes-2]=0;
+		this.plateau[nbLignes-4][nbColonnes-3]=0;
 	}
 
+	// Getters et setters
 	
-	public int getwidth()
+	public int getLongueur()
 	{
-		return this.width;
+		return this.longueur;
 	}
 	
-	public int getheigth()
+	public int getHauteur()
 	{
-		return this.heigth;
+		return this.hauteur;
 	}
 	
-	public int gettab(int x, int y)
+	public void setPlateau(int x, int y, int valeur)
 	{
-		return this.tab[x][y];
-	}
-
-	
-	public void put (int x, int y)
-	{
-		this.tab[x][y]=1;
+		this.plateau[x][y]=valeur;
 	}
 	
-	public void set (int x, int y, int value)
+	public int getPlateau(int x, int y)
 	{
-		this.tab[x][y]=value;
+		return this.plateau[x][y];
 	}
 		
-	public int test (int x, int y)
-	{
-		if (this.tab[x][y]==1)
-			return 1;
+	//
 	
-		if (this.tab[x][y]==2)
+	public int test(int x, int y)
+	{
+		if(this.plateau[x][y]==1)
+		{
 			return 1;
+		}
+	
+		if(this.plateau[x][y]==2)
+		{
+			return 3;
+		}
+		if(this.plateau[x][y]==99)
+		{
+			return 2;
+		}
 		
 		return 0;
 	}
 
-	public void draw_all (Joueur [] joueur, int nb)
+	// Fonction interface graphique
+	
+	public void dessinerPlateau (Joueur [] joueur, int nb)
 	{
-		int i=0;
-		int j=0;
-		
-		int rayon;
-		
-		if (this.width>this.heigth)
-			rayon=this.heigth;
-		else
-			rayon=this.width;
-		
-		int orgx=this.width;
-		int orgy=this.heigth;
+		int orgx=this.longueur;
+		int orgy=this.hauteur;
 
-		for (i=0;i<this.x;i++)
-		{	for (j=0;j<this.y;j++)
-			{	if (this.tab[i][j]==0)
+		// On dessine le plateau de jeu en fonction de la valeur du type de la case
+		
+		for (int i=0;i<this.nbLignes;i++)
+		{	
+			for (int j=0;j<this.nbColonnes;j++)
+			{	
+				if (this.plateau[i][j]==0) //Bloc vert
 				{	
-					StdDraw.setPenColor(Color.GREEN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
 				}
-				if (this.tab[i][j]==2)
+				else if (this.plateau[i][j]==2) //Bloc orange
 				{	
-					StdDraw.setPenColor(Color.ORANGE);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"orange.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"orange.png",40,40);
 				}
-				else if (this.tab[i][j]==1)
+				else if (this.plateau[i][j]==1) //Mur gris
 				{	
-					StdDraw.setPenColor(Color.GRAY);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"bloc.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"bloc.png",40,40);
 				}
-				else if (this.tab[i][j]>=666)
+				else if (this.plateau[i][j]>=100) //Bombe en cours d'explosion
 				{	
-					StdDraw.setPenColor(Color.GREEN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.width)+orgx, (j*2*this.heigth)+orgy, "feu.png", 40, 40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx, (j*2*this.hauteur)+orgy, "feu.png", 40, 40);
 				}
-				else if (this.tab[i][j]==10)
+				else if (this.plateau[i][j]==10) //Flamme bleue
 				{
-					StdDraw.setPenColor(Color.GREEN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
-					StdDraw.setPenColor(Color.CYAN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"flammebleue.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"flammebleue.png",40,40);
 				}
-				else if (this.tab[i][j]==11)
+				else if (this.plateau[i][j]==11) //Flamme jaune
 				{
-					StdDraw.setPenColor(Color.GREEN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
-					StdDraw.setPenColor(Color.CYAN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"flammejaune.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"flammejaune.png",40,40);
 				}
-				else if (this.tab[i][j]==12)
+				else if (this.plateau[i][j]==12) //Flamme rouge
 				{	
-					StdDraw.setPenColor(Color.GREEN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
-					StdDraw.setPenColor(Color.CYAN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"flammerouge.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"flammerouge.png",40,40);
 				}
-				else if (this.tab[i][j]==13)
+				else if (this.plateau[i][j]==13) //Bombe rouge
 				{	
-					StdDraw.setPenColor(Color.GREEN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
-					StdDraw.setPenColor(Color.CYAN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"bomberouge.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"bomberouge.png",40,40);
 				}
-				else if (this.tab[i][j]==14)
+				else if (this.plateau[i][j]==14) //+1 vie
 				{	
-					StdDraw.setPenColor(Color.GREEN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
-					StdDraw.setPenColor(Color.CYAN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"oneup.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"oneup.png",40,40);
 				}
-				else if (this.tab[i][j]==15)
+				else if (this.plateau[i][j]==15) //Ralentir le joueur (tortue)
 				{	
-					StdDraw.setPenColor(Color.GREEN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
-					StdDraw.setPenColor(Color.CYAN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"slow.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"slow.png",40,40);
 				}
-				else if (this.tab[i][j]==16)
+				else if (this.plateau[i][j]==16) //Accéler le joueur (lièvre)
 				{	
-					StdDraw.setPenColor(Color.GREEN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
-					StdDraw.setPenColor(Color.CYAN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"speed.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"speed.png",40,40);
 				}
-				else if (this.tab[i][j]==17)
+				else if (this.plateau[i][j]==17) //+2 bombes
 				{	
-					StdDraw.setPenColor(Color.GREEN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
-					StdDraw.setPenColor(Color.CYAN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"bombeplus.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"bombeplus.png",40,40);
 				}
-				else if (this.tab[i][j]==18)
+				else if (this.plateau[i][j]==18) //-2 bombes
 				{	
-					StdDraw.setPenColor(Color.GREEN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"vert.png",40,40);
-					StdDraw.setPenColor(Color.CYAN);
-					StdDraw.picture((i*2*this.width)+orgx,(j*2*this.heigth)+orgy,"bombemoins.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"bombemoins.png",40,40);
 				}
-				StdDraw.text(0, 0, "Vies : " + joueur[0].getlife());
+				else if (this.plateau[i][j]==19) //Flamme verte
+				{	
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"flammeverte.png",40,40);
+				}
+				
+				else if (this.plateau[i][j]==20) //Passe muraille
+				{	
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"cle.png",40,40);
+				}
+				
+				else if (this.plateau[i][j]==21) //Bouclier
+				{	
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"bouclier.png",40,40);
+				}
 			}
 		}
 
-		for (i=0;i<nb;i++)
+		// Dessin des bombes
+		
+		for (int i=0;i<nb;i++)
 		{
-			for (j=0; j<joueur[i].getnbbombe ();j++)
-				joueur[i].bombe[j].draw(this);
+			for (int j=0; j<joueur[i].getNbBombes();j++)
+			{
+				joueur[i].bombe[j].dessinerBombe(this);
+			}
 		}
 
-		for (i=0;i<nb;i++)
+		// Dessin du joueur
+		
+		for (int i=0;i<nb;i++)
 		{
-			joueur[i].draw();
+			joueur[i].dessiner_joueur();
 		}
 		
 	}

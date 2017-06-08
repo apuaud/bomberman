@@ -16,19 +16,23 @@ import sun.audio.AudioStream;
 
 public class Audio
 {
+	private URL url;
+	private AudioClip son;
+	
 	public Audio(String nomFichier)
 	{
-
- 		URL url = Audio.class.getResource("boom3.wav"); 
- 		AudioClip son = Applet.newAudioClip(url); 							
- 		son.play();
-
- 		/*
-	     AudioInputStream audioInputStream =AudioSystem.getAudioInputStream(this.getClass().getResource("boum.wav"));
-	     Clip clip = AudioSystem.getClip();
-	     clip.open(audioInputStream);
-	     clip.start( );
-	    */
-
+ 		this.url = Audio.class.getResource(nomFichier); 
+ 		this.son = Applet.newAudioClip(this.url); 							
 	}
+	
+	public void play()
+	{
+		this.son.play();
+	}
+	
+	public void stop()
+	{
+		this.son.stop();
+	}
+	
 }

@@ -1,5 +1,4 @@
-/.classpath
-/.project
-/bbman/
 /bin/
-/boum2.wav
+/.gitignore
+/bbman/
+/bombe.wav
