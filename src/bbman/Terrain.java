@@ -104,8 +104,8 @@ public class Terrain
 	
 	public void dessinerPlateau (Joueur [] joueur, int nb)
 	{
-		int orgx=this.longueur;
-		int orgy=this.hauteur;
+		int x=this.longueur;
+		int y=this.hauteur;
 
 		// On dessine le plateau de jeu en fonction de la valeur du type de la case
 		
@@ -115,82 +115,82 @@ public class Terrain
 			{	
 				if (this.plateau[i][j]==0) //Bloc vert
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
 				}
 				else if (this.plateau[i][j]==2) //Bloc orange
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"orange.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"orange.png",40,40);
 				}
 				else if (this.plateau[i][j]==1) //Mur gris
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"bloc.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"bloc.png",40,40);
 				}
 				else if (this.plateau[i][j]>=100) //Bombe en cours d'explosion
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx, (j*2*this.hauteur)+orgy, "feu.png", 40, 40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x, (j*2*this.hauteur)+y, "feu.png", 40, 40);
 				}
 				else if (this.plateau[i][j]==10) //Flamme bleue
 				{
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"flammebleue.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"flammebleue.png",40,40);
 				}
 				else if (this.plateau[i][j]==11) //Flamme jaune
 				{
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"flammejaune.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"flammejaune.png",40,40);
 				}
 				else if (this.plateau[i][j]==12) //Flamme rouge
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"flammerouge.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"flammerouge.png",40,40);
 				}
 				else if (this.plateau[i][j]==13) //Bombe rouge
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"bomberouge.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"bomberouge.png",40,40);
 				}
 				else if (this.plateau[i][j]==14) //+1 vie
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"oneup.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"oneup.png",40,40);
 				}
 				else if (this.plateau[i][j]==15) //Ralentir le joueur (tortue)
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"slow.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"slow.png",40,40);
 				}
 				else if (this.plateau[i][j]==16) //Accéler le joueur (lièvre)
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"speed.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"speed.png",40,40);
 				}
 				else if (this.plateau[i][j]==17) //+2 bombes
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"bombeplus.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"bombeplus.png",40,40);
 				}
 				else if (this.plateau[i][j]==18) //-2 bombes
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"bombemoins.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"bombemoins.png",40,40);
 				}
 				else if (this.plateau[i][j]==19) //Flamme verte
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"flammeverte.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"flammeverte.png",40,40);
 				}
 				
 				else if (this.plateau[i][j]==20) //Passe muraille
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"cle.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"cle.png",40,40);
 				}
 				
 				else if (this.plateau[i][j]==21) //Bouclier
 				{	
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"vert.png",40,40);
-					StdDraw.picture((i*2*this.longueur)+orgx,(j*2*this.hauteur)+orgy,"bouclier.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"vert.png",40,40);
+					StdDraw.picture((i*2*this.longueur)+x,(j*2*this.hauteur)+y,"bouclier.png",40,40);
 				}
 			}
 		}

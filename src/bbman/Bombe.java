@@ -156,7 +156,7 @@ public class Bombe
 	{
 		int conditionArret = (int)(Math.random()*100);
 		int type_bonus = 0;
-		if (conditionArret<=100)
+		if (conditionArret<=20)
 		{
 			int newTest=(int)(Math.random()*12);
 			switch(newTest)
@@ -214,7 +214,7 @@ public class Bombe
 	}
 
 	
-// Lorsque la bombe explose 
+	// Lorsque la bombe explose 
 	
 	public Terrain boum(Terrain terrain, Joueur[] joueur, boolean bombeDeBase)
 	{	
@@ -249,7 +249,7 @@ public class Bombe
 				}
 			}
 			
-			else if(terrain.getPlateau(this.x+i,this.y)>=10 && terrain.getPlateau(this.x+i,this.y)<=19) // S'il y avait déjà un bonus sur la case
+			else if(terrain.getPlateau(this.x+i,this.y)>=10 && terrain.getPlateau(this.x+i,this.y)<=21) // S'il y avait déjà un bonus sur la case
 			{
 				terrain.setPlateau(this.x+i, this.y, terrain.getPlateau(this.x+i,this.y));
 			}
@@ -302,7 +302,7 @@ public class Bombe
 				}
 			}
 			
-			else if(terrain.getPlateau(this.x,this.y-i)>=10 && terrain.getPlateau(this.x,this.y-i)<=19)
+			else if(terrain.getPlateau(this.x,this.y-i)>=10 && terrain.getPlateau(this.x,this.y-i)<=21)
 			{
 				terrain.setPlateau(this.x, this.y-i, terrain.getPlateau(this.x,this.y-i));
 			}
@@ -324,7 +324,7 @@ public class Bombe
 			
 			if(bombeDeBase)
 			{
-			verifBombeDansPortee(this.x,this.y-i,joueur,terrain);
+				verifBombeDansPortee(this.x,this.y-i,joueur,terrain);
 			}
 			
 		}
@@ -356,7 +356,7 @@ public class Bombe
 
 			}
 			
-			else if(terrain.getPlateau(this.x-i,this.y)>=10 && terrain.getPlateau(this.x-i,this.y)<=19)
+			else if(terrain.getPlateau(this.x-i,this.y)>=10 && terrain.getPlateau(this.x-i,this.y)<=21)
 			{
 				terrain.setPlateau(this.x-i, this.y, terrain.getPlateau(this.x-i,this.y));
 			}
@@ -409,7 +409,7 @@ public class Bombe
 				}
 			}
 			
-			else if(terrain.getPlateau(this.x,this.y+i)>=10 && terrain.getPlateau(this.x,this.y+i)<=19)
+			else if(terrain.getPlateau(this.x,this.y+i)>=10 && terrain.getPlateau(this.x,this.y+i)<=21)
 			{
 				terrain.setPlateau(this.x, this.y+i, terrain.getPlateau(this.x,this.y+i));
 			}

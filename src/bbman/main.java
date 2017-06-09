@@ -8,20 +8,48 @@ public class main
 {		
 	public static void main(String[] args) 
 	{	
+		// Initialisation des variables
 		int nbColonnes=21;
 		int nbLignes=17;
-		int longueurCase=20;
-		int hauteurCase=20;
+		int longueurCase=20; // en pixels
+		int hauteurCase=20; // en pixels
 		int nbJoueurs=2;
 		
-		StdDraw.setCanvasSize(longueurCase*nbColonnes*2,hauteurCase*nbLignes*2);
-		StdDraw.setXscale(0,longueurCase*nbColonnes*2);
-		StdDraw.setYscale(0,hauteurCase*nbLignes*2);
-		
+		// Musique de fond du jeu
 		Audio sonjeu = new Audio("jeu.wav");
 		sonjeu.play();
+		
+		// Création du terrain et des joueurs
+		Terrain terrain = new Terrain(nbColonnes,nbLignes,longueurCase,hauteurCase);
+		Joueur[] joueur = new Joueur[nbJoueurs] ;
+		
+		// Initialisation du terrain et des joueurs
+		initialisation(longueurCase, nbColonnes, hauteurCase, nbLignes, nbJoueurs, joueur, terrain);
+		
+		// Affichage du menu
+		menu(longueurCase, nbColonnes, hauteurCase, nbLignes, sonjeu);
+		
+		// Plateau initial
+		terrain.dessinerPlateau(joueur,nbJoueurs);
+		
+		// Mise à jour en continu du terrain
+		miseAJour(joueur, nbJoueurs, terrain, sonjeu);
+		
+		// Lorsqu'un des deux joueurs n'est plus en vie
+		finDePartie(joueur, terrain, sonjeu);
+	}
 
+	
+	
+	
+	
+	// Menu
+	
+	public static void menu(int longueurCase, int nbColonnes, int hauteurCase ,int nbLignes, Audio sonjeu)
+	{
 		StdDraw.picture(longueurCase*nbColonnes,hauteurCase*nbLignes,"menu.png",longueurCase*nbColonnes*2,hauteurCase*nbLignes*2);
+		StdDraw.picture(30, 30, "couperson.png", 30, 30);
+		
 		boolean commencerJeu = false;
 		boolean commandes = false;
 		
@@ -50,6 +78,7 @@ public class main
 				{
 					commandes = true;
 					StdDraw.picture(longueurCase*nbColonnes,hauteurCase*nbLignes,"commandes.png",longueurCase*nbColonnes*2,hauteurCase*nbLignes*2);
+					StdDraw.picture(30, 30, "couperson.png", 30, 30);
 				}
 			}
 			
@@ -62,26 +91,55 @@ public class main
 				{
 					commandes = false;
 					StdDraw.picture(longueurCase*nbColonnes,hauteurCase*nbLignes,"menu.png",longueurCase*nbColonnes*2,hauteurCase*nbLignes*2);
+					StdDraw.picture(30, 30, "couperson.png", 30, 30);
+				}
+			}
+			
+			if(StdDraw.mousePressed())
+			{
+				if(StdDraw.mouseX()>15
+				&& StdDraw.mouseX()<45
+				&& StdDraw.mouseY()>15
+				&& StdDraw.mouseY()<45)
+				{
+					sonjeu.stop();
 				}
 			}
 			
 		}
-		// Création du terrain et des joueurs
-		
-		Terrain terrain = new Terrain(nbColonnes,nbLignes,longueurCase,hauteurCase);
-		Joueur[] joueur = new Joueur[nbJoueurs] ;
+	}
+	
+	// Initialisation StdDraw + joueur/terrain
+	
+	public static void initialisation(int longueurCase, int nbColonnes, int hauteurCase ,int nbLignes, int nbJoueurs, Joueur[] joueur, Terrain terrain)
+	{
+		StdDraw.setCanvasSize(longueurCase*nbColonnes*2,hauteurCase*nbLignes*2);
+		StdDraw.setXscale(0,longueurCase*nbColonnes*2);
+		StdDraw.setYscale(0,hauteurCase*nbLignes*2);
 	
 		for (int i=0;i<nbJoueurs;i++)
 		{	
 			joueur[i]=new Joueur(terrain);
 			joueur[i].positionInitiale(i+1,nbColonnes,nbLignes,longueurCase,hauteurCase);
 		}
-		
-		
-		terrain.dessinerPlateau(joueur,nbJoueurs);
-
+	}
+	
+	// Mise à jour plateau de jeu
+	
+	public static void miseAJour(Joueur[] joueur, int nbJoueurs, Terrain terrain, Audio sonjeu)
+	{
 		while(joueurEnVie(joueur))
 		{	
+			if(StdDraw.mousePressed())
+			{
+				if(StdDraw.mouseX()>15
+				&& StdDraw.mouseX()<45
+				&& StdDraw.mouseY()>15
+				&& StdDraw.mouseY()<45)
+				{
+					sonjeu.stop();
+				}
+			}
 			int mouvement = deplacement(joueur, nbJoueurs,terrain);
 			
 			for (int i=0; i<nbJoueurs; i++)
@@ -98,17 +156,12 @@ public class main
 			StdDraw.show();
 			StdDraw.pause(5);
 		}
-		
-		// Lorsqu'un des deux joueurs n'est plus en vie
-		sonjeu.stop();
-		Audio sonperdu = new Audio("perdu.wav");
-		sonperdu.play();
-		finDePartie(joueur, terrain);
 	}
-
+	
+	
 	// Key Listener
 	
-	public static int deplacement(Joueur [] joueur, int nbJoueurs, Terrain terrain)
+	public static int deplacement(Joueur[] joueur, int nbJoueurs, Terrain terrain)
 	{	
 		int isTyped=0;
 	
@@ -181,8 +234,11 @@ public class main
 	
 	// Sinon on finit la partie
 	
-	public static void finDePartie(Joueur[] joueur, Terrain terrain)
+	public static void finDePartie(Joueur[] joueur, Terrain terrain, Audio sonjeu)
 	{
+		sonjeu.stop();
+		Audio sonperdu = new Audio("perdu.wav");
+		sonperdu.play();
 		
 		String joueurGagnant;
 		if(joueur[0].getViesRestante()<=0)
@@ -269,7 +325,7 @@ public class main
 				}
 				if(joueur[i].getBouclier() == 1)
 				{
-					StdDraw.picture(20, 350, "cle.png", 20, 20);
+					StdDraw.picture(20, 350, "bouclier.png", 20, 20);
 					StdDraw.text(22, 330, "✓");
 				}
 			}
@@ -312,7 +368,7 @@ public class main
 				}
 				if(joueur[i].getBouclier() == 1)
 				{
-					StdDraw.picture(820, 310, "cle.png", 20, 20);
+					StdDraw.picture(820, 310, "bouclier.png", 20, 20);
 					StdDraw.text(822, 290, "✓");
 				}
 			}

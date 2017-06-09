@@ -268,7 +268,6 @@ public class Joueur
 				break;
 				
 			case 21:
-				this.setViesRestante(this.getViesRestante()+1);
 				this.bouclier = 1;
 				break;
 		}
